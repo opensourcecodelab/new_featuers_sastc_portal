@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SASTC Portal</title>
+  <meta name="description" content="Notice board, exam results, and CGPA calculator portal with AI Academic Advisor for HSTU students." />
+  <meta property="og:title" content="SASTC Portal" />
+  <meta property="og:description" content="Notice board, exam results, and CGPA calculator portal with AI Academic Advisor for HSTU students." />
+
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="https://i.ibb.co.com/7JnHCrB5/Chat-GPT-Image-Jul-29-2026-09-55-12-PM.png" />
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Marked.js for Markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: { preflight: false },
+      theme: {
+        extend: {
+          colors: {
+            primary: 'var(--primary)',
+            card: 'var(--bg-card)',
+            muted: 'var(--text-muted)'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <!-- Animated Background (Optimized) -->
+  <div class="bg-anim-container" aria-hidden="true">
+    <!-- CSE Icons -->
+    <svg class="bg-anim-icon anim-cse i1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+    <svg class="bg-anim-icon anim-cse i4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+    <svg class="bg-anim-icon anim-cse i7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+    
+    <!-- Agriculture Icons -->
+    <svg class="bg-anim-icon anim-agri i2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"></path><path d="M12 12c-4 0-7-3-7-7 0 4 3 7 7 7Z"></path><path d="M12 12c4 0 7-3 7-7 0 4-3 7-7 7Z"></path></svg>
+    <svg class="bg-anim-icon anim-agri i5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 22l7.4-7.4"></path></svg>
+    <svg class="bg-anim-icon anim-agri i8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+
+    <!-- BBA Icons -->
+    <svg class="bg-anim-icon anim-bba i3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+    <svg class="bg-anim-icon anim-bba i6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+    <svg class="bg-anim-icon anim-bba i9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+  </div>
+  <!-- Sticky Top App Header -->
+  <header class="app-header">
+    <div class="header-brand" id="headerBrand" role="button" tabindex="0" title="Scroll to top">
+      <div class="design-logo">
+        <img src="https://i.ibb.co.com/7JnHCrB5/Chat-GPT-Image-Jul-29-2026-09-55-12-PM.png" alt="Portal Logo" id="logoImg" decoding="async">
+      </div>
+      <div>
+        <h1 class="brand-title">SASTC <span class="portal-text">PORTAL</span></h1>
+      </div>
+    </div>
+    <span class="header-free-badge">100% Free</span>
+  </header>
+
+  <div class="app-container">
+    <!-- TAB 1: HOME VIEW -->
+    <section id="view-home" class="tab-view active">
+      <!-- Highlight Card: Exam Dates -->
+      <div class="hero-card card-animate exam-dates-widget" id="heroLatestCard">
+        <div class="exam-widget-header">
+          <div class="exam-dates-badge">
+            <i class="fa-solid fa-calendar-days"></i>
+            <span>EXAM DATES</span>
+          </div>
+          <div class="exam-semester-pill" id="examSemesterLabel" role="button" tabindex="0" title="Click to change Level & Semester">
+            <span id="examSemesterText">LEVEL 1 SEMESTER 1</span>
+            <i class="fa-solid fa-chevron-down exam-sem-caret"></i>
+          </div>
+        </div>
+
+        <!-- Inline Level & Semester Selector Popover -->
+        <div class="exam-sem-popover" id="examSemPopover">
+          <div class="exam-sem-popover-row">
+            <div class="exam-sem-field">
+              <label for="homeExamLevelSelect">Level</label>
+              <select id="homeExamLevelSelect">
+                <option value="1">Level 1</option>
+                <option value="2">Level 2</option>
+                <option value="3">Level 3</option>
+                <option value="4">Level 4</option>
+              </select>
+            </div>
+            <div class="exam-sem-field">
+              <label for="homeExamSemSelect">Semester</label>
+              <select id="homeExamSemSelect">
+                <option value="1">Semester 1</option>
+                <option value="2">Semester 2</option>
+              </select>
+            </div>
+            <button type="button" id="saveExamSemBtn" class="exam-sem-save-btn">Save</button>
+          </div>
+        </div>
+
+        <div class="exam-cards-wrapper">
+          <div class="exam-cards-scroll" id="examCardsList">
+            <!-- Populated dynamically from CSE-Exam.js / AG-EXAM.js / BBA-Exam.js -->
+          </div>
+
+          <button type="button" class="exam-scroll-next" id="examScrollNextBtn" aria-label="Scroll right">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="exam-widget-footer">
+          <span class="exam-info-chip" id="examTodayChip">Today</span>
+          <span class="exam-info-summary" id="examInfoSummary">Total  Exams • Gap between:  Days avg • Exam Time: </span>
+        </div>
+      </div>
+
+
+      <!-- SASTC Notices Section -->
+      <div class="section-header">
+        <h3><i class="fa-solid fa-building-columns"></i> SASTC Notices only</h3>
+      </div>
+      <div id="sastcNoticeList" class="notice-list">
+        <div class="state-box">
+          <i class="fa-solid fa-circle-notch spinner"></i>
+          <span>Loading SASTC notices...</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- TAB 2: NOTICE VIEW -->
+    <section id="view-notice" class="tab-view">
+      <div class="controls">
+        <div class="search-wrapper">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="search" id="noticeSearchInput" class="search-input" placeholder="Search department notices..." autocomplete="off" />
+          <button type="button" id="noticeClearBtn" class="clear-btn" aria-label="Clear search">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </button>
+        </div>
+      </div>
+      <!-- Notice List Container -->
+      <div id="noticeList" class="notice-list" aria-live="polite">
+        <div class="state-box">
+          <i class="fa-solid fa-circle-notch spinner"></i>
+          <span>Loading notices...</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: RESULT VIEW -->
+    <section id="view-result" class="tab-view">
+      <div class="controls">
+        <div class="search-wrapper">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="search" id="resultSearchInput" class="search-input" placeholder="Search exam results..." autocomplete="off" />
+          <button type="button" id="resultClearBtn" class="clear-btn" aria-label="Clear search">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </button>
+        </div>
+      </div>
+      <div id="resultList" class="notice-list" aria-live="polite">
+        <div class="state-box">
+          <i class="fa-solid fa-circle-notch spinner"></i>
+          <span>Loading results...</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: RESOURCES VIEW -->
+    <section id="view-resources" class="tab-view">
+      <!-- Compact Header: Auto-Detected Dept + Compact Manual L1-L4 & S1-S2 Selector -->
+      <div class="res-top-bar card-animate">
+        <div class="res-dept-context">
+          <div class="res-dept-badge" id="resDeptBadge">
+            <i class="fa-solid fa-graduation-cap" id="resDeptIcon"></i>
+            <span id="resDeptName">CSE</span>
+          </div>
+          <div class="res-context-meta">
+            <span class="res-context-title">Resources</span>
+            <span class="res-context-sub" id="resContextSub">L1 • S1</span>
+          </div>
+          <button type="button" id="openResLeaderboardBtn" class="res-trophy-btn" title="Top Contributors Leaderboard" aria-label="Open Top Contributors">
+            <i class="fa-solid fa-trophy"></i>
+            <span>Top</span>
+          </button>
+        </div>
+
+        <!-- Compact Manual L1–L4 and S1–S2 Selector (Scoped to Resources Section Only) -->
+        <div class="res-ls-selector" aria-label="Level and Semester Selector">
+          <div class="res-pill-group" id="resLevelGroup" role="group" aria-label="Select Level">
+            <button type="button" class="res-ls-btn active" data-level="1">L1</button>
+            <button type="button" class="res-ls-btn" data-level="2">L2</button>
+            <button type="button" class="res-ls-btn" data-level="3">L3</button>
+            <button type="button" class="res-ls-btn" data-level="4">L4</button>
+          </div>
+          <span class="res-ls-divider" aria-hidden="true"></span>
+          <div class="res-pill-group" id="resSemGroup" role="group" aria-label="Select Semester">
+            <button type="button" class="res-ls-btn active" data-sem="1">S1</button>
+            <button type="button" class="res-ls-btn" data-sem="2">S2</button>
+            <button type="button" class="res-ls-btn res-ls-all" data-sem="ALL" title="Show all levels & semesters">All</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Smart Search Bar with Autocomplete -->
+      <div class="controls res-search-controls">
+        <div class="search-wrapper res-search-wrapper">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input
+            type="text"
+            inputmode="search"
+            id="resourceSearchInput"
+            class="search-input"
+            placeholder="Search course code, title, tags, or topics..."
+            autocomplete="off"
+            aria-label="Search academic resources"
+            aria-expanded="false"
+            aria-controls="resourceAutocomplete"
+          />
+          <button type="button" id="resourceClearBtn" class="clear-btn" aria-label="Clear resource search">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </button>
+
+          <!-- Smart Autocomplete Dropdown -->
+          <div id="resourceAutocomplete" class="res-autocomplete-dropdown" role="listbox" aria-label="Search suggestions"></div>
+        </div>
+      </div>
+
+      <!-- Category Filter Chips: All, Question Bank, Lecture Notes, Reference Books, Lab Materials, Previous Questions, More -->
+      <div class="res-category-bar" id="resCategoryBar" role="tablist" aria-label="Resource Categories">
+        <button type="button" class="res-cat-chip active" data-category="All">
+          <i class="fa-solid fa-layer-group"></i>
+          <span>All</span>
+          <span class="res-cat-count" data-cat-count="All">0</span>
+        </button>
+        <button type="button" class="res-cat-chip" data-category="Question Bank">
+          <i class="fa-solid fa-circle-question"></i>
+          <span>Question Bank</span>
+          <span class="res-cat-count" data-cat-count="Question Bank">0</span>
+        </button>
+        <button type="button" class="res-cat-chip" data-category="Lecture Notes">
+          <i class="fa-solid fa-book-open"></i>
+          <span>Lecture Notes</span>
+          <span class="res-cat-count" data-cat-count="Lecture Notes">0</span>
+        </button>
+        <button type="button" class="res-cat-chip" data-category="Reference Books">
+          <i class="fa-solid fa-book"></i>
+          <span>Reference Books</span>
+          <span class="res-cat-count" data-cat-count="Reference Books">0</span>
+        </button>
+        <button type="button" class="res-cat-chip" data-category="Lab Materials">
+          <i class="fa-solid fa-flask"></i>
+          <span>Lab Materials</span>
+          <span class="res-cat-count" data-cat-count="Lab Materials">0</span>
+        </button>
+        <button type="button" class="res-cat-chip" data-category="Previous Questions">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <span>Previous Questions</span>
+          <span class="res-cat-count" data-cat-count="Previous Questions">0</span>
+        </button>
+        <button type="button" class="res-cat-chip" data-category="More">
+          <i class="fa-solid fa-ellipsis"></i>
+          <span>More</span>
+          <span class="res-cat-count" data-cat-count="More">0</span>
+        </button>
+      </div>
+
+      <!-- Compact Course Quick-Filter Bar (populated dynamically from active semester courses) -->
+      <div class="res-course-bar" id="resCourseBar" aria-label="Filter by course code"></div>
+
+      <!-- Resource List Section Header -->
+      <div class="res-slider-header">
+        <div class="res-slider-meta">
+          <span class="res-slider-title" id="resSliderTitle">Showing Resources</span>
+        </div>
+        <span class="res-slider-count-pill" id="resSliderCount">0 items</span>
+      </div>
+
+      <!-- Vertical Resource Cards List -->
+      <div class="res-slider-stage">
+        <div id="resourceSliderTrack" class="res-slider-track" aria-live="polite">
+          <div class="state-box" style="width:100%;">
+            <i class="fa-solid fa-circle-notch spinner"></i>
+            <span>Loading department resources...</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: SETTINGS VIEW -->
+    <section id="view-settings" class="tab-view">
+      <div class="settings-header-main">
+        <h2>Settings</h2>
+        <p>Manage your application preferences</p>
+      </div>
+
+      <div class="settings-card card-animate">
+        <div class="settings-header">
+          <i class="fa-solid fa-sliders"></i>
+          <h3>Department Preferences</h3>
+        </div>
+
+        <!-- Department Selection Dropdown -->
+        <div class="setting-item flex-col-start">
+          <div class="setting-info w-full">
+            <label for="deptPreferenceSelect"><strong>Selected Department</strong></label>
+            <p>Show notices strictly for your department</p>
+          </div>
+          <select id="deptPreferenceSelect" class="setting-select w-full mt-2">
+            
+            <option value="CSE">Computer Science (CSE)</option>
+            <option value="AG">B.Sc in Agriculture</option>
+            <option value="BBA">Business Admin (BBA)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Developer Details -->
+      <div class="settings-card card-animate dev-card">
+        <div class="dev-card-glow" aria-hidden="true"></div>
+
+        <!-- Profile Header -->
+        <div class="dev-top-row">
+          <div class="dev-avatar" aria-hidden="true">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <div class="dev-info">
+            <div class="dev-role-badge">LEAD DEVELOPER</div>
+            <h4>Mehedi Al Hasan Sawon</h4>
+            <p class="dev-org">Designed, Developed &amp; Maintained with <span class="dev-heart" aria-hidden="true">❤️</span> for SASTC Students.</p>
+          </div>
+        </div>
+
+        <!-- Tagline Banner: No Cost, Just Care -->
+        <div class="dev-tagline-box">
+          <div class="dev-tagline-title">
+            <span>No Cost, Just Care</span>
+          </div>
+          <p class="dev-tagline-sub">Free Access. No Fees. Made for Students.</p>
+        </div>
+
+        <!-- Version & Last Updated Pills (Single Row) -->
+        <div class="dev-meta-pills">
+          <span class="dev-pill version-pill">
+            <i class="fa-solid fa-rocket" aria-hidden="true"></i> v2.2.0
+          </span>
+          <span class="dev-pill date-pill">
+            <i class="fa-regular fa-calendar-check" aria-hidden="true"></i> Updated: 19 Oct 2026
+          </span>
+        </div>
+
+        <!-- Expandable About & Mission Section (Expanded by default) -->
+        <div class="dev-about-section">
+          <button type="button" class="dev-about-toggle open" id="devAboutToggleBtn" aria-expanded="true" aria-controls="devAboutContent">
+            <span class="dev-about-toggle-label">
+              <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+              <span>About Our Mission &amp; Features</span>
+            </span>
+            <i class="fa-solid fa-chevron-down dev-about-chevron" id="devAboutChevron" aria-hidden="true"></i>
+          </button>
+
+          <div class="dev-about-content open" id="devAboutContent">
+            <p class="dev-mission-text">
+              This platform is dedicated to providing official university notices and examination results to SASTC students completely free of charge—ensuring every student stays informed without barriers.
+            </p>
+            <div class="dev-features-list">
+              <div class="dev-feature-item">
+                <div class="dev-feature-icon notices"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i></div>
+                <div class="dev-feature-body">
+                  <strong>University Notices</strong>
+                  <span>Important academic announcements in one place.</span>
+                </div>
+              </div>
+              <div class="dev-feature-item">
+                <div class="dev-feature-icon results"><i class="fa-solid fa-square-poll-vertical" aria-hidden="true"></i></div>
+                <div class="dev-feature-body">
+                  <strong>Exam Results</strong>
+                  <span>Convenient access to examination results.</span>
+                </div>
+              </div>
+              <div class="dev-feature-item">
+                <div class="dev-feature-icon mission"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i></div>
+                <div class="dev-feature-body">
+                  <strong>Student-First Mission</strong>
+                  <span>Making academic information accessible without fees.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dev-divider"></div>
+
+        <!-- Social & Feedback Actions -->
+        <div class="dev-actions-grid">
+          <a href="https://www.facebook.com/mehedialhasansawon" target="_blank" rel="noopener noreferrer" class="social-link fb">
+            <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+            <span>Facebook</span>
+          </a>
+          <a href="https://t.me/t9xql" target="_blank" rel="noopener noreferrer" class="social-link tg">
+            <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+            <span>Feedback</span>
+          </a>
+        </div>
+
+        <!-- Subtle Footer Quote -->
+        <p class="dev-footer-quote">
+          &ldquo;Built with passion, shared with love, and dedicated to students.&rdquo;
+        </p>
+      </div>
+
+      <!-- CGPA Button & Section (Above Gemini API Keys) -->
+      <div class="settings-card card-animate shadow-sm rounded-xl mb-4 p-4 bg-white border border-[#85bdf0]">
+        <button type="button" id="settingsCgpaToggleBtn" class="w-full flex items-center justify-between text-left bg-transparent border-0 cursor-pointer p-1">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg border border-indigo-100">
+              <i class="fa-solid fa-calculator"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="font-bold text-lg m-0 text-gray-900">CGPA Calculator</h3>
+                <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-green-100 text-green-700">Coming soon</span>
+              </div>
+              <p class="text-sm text-gray-500 m-0">HSTU AI-Powered Academic Advisor</p>
+            </div>
+          </div>
+          <i id="settingsCgpaToggleIcon" class="fa-solid fa-chevron-down text-gray-400 transition-transform"></i>
+        </button>
+
+        <div id="view-calculator" class="hidden mt-4 pt-4 border-t border-gray-100">
+          <!-- Settings: Level & Semester -->
+          <div class="settings-card card-animate shadow-sm rounded-xl mb-4 p-4 bg-white border border-[#85bdf0]">
+            <div class="settings-header mb-4 flex items-center gap-2 text-primary">
+              <i class="fa-solid fa-sliders text-lg"></i>
+              <h3 class="font-bold text-lg m-0">Academic Target</h3>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-4 w-full">
+              <div class="flex-1 flex flex-col">
+                <label class="text-sm font-semibold mb-1 text-gray-700">Level</label>
+                <select id="calcLevel" class="setting-select w-full p-2.5 rounded-lg border border-gray-300 bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:border-[#85bdf0] transition-all outline-none">
+                  <option value="1">Level 1</option>
+                  <option value="2">Level 2</option>
+                  <option value="3">Level 3</option>
+                  <option value="4">Level 4</option>
+                </select>
+              </div>
+              <div class="flex-1 flex flex-col">
+                <label class="text-sm font-semibold mb-1 text-gray-700">Semester</label>
+                <select id="calcSemester" class="setting-select w-full p-2.5 rounded-lg border border-gray-300 bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:border-[#85bdf0] transition-all outline-none">
+                  <option value="I">Semester I</option>
+                  <option value="II">Semester II</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cumulative History Summary -->
+          <div class="settings-card card-animate shadow-sm rounded-xl mb-4 p-4 bg-white border border-[#85bdf0] flex flex-col">
+            <div class="flex justify-between items-center mb-2">
+              <div class="flex items-center gap-2 text-primary">
+                <i class="fa-solid fa-clock-rotate-left text-lg"></i>
+                <h3 class="font-bold text-lg m-0">GPA History</h3>
+              </div>
+              <button id="clearHistoryBtn" type="button" class="bg-red-50 text-red-500 hover:bg-red-100 hover:text-red-700 font-semibold px-3 py-1.5 rounded-lg text-xs transition-colors flex items-center gap-1 shadow-sm border border-red-100">
+                <i class="fa-solid fa-trash-can"></i> <span>Clear</span>
+              </button>
+            </div>
+            <div id="historyList" class="flex flex-col gap-2 mb-3 mt-2 w-full max-h-[50vh] md:max-h-[70vh] overflow-y-auto pr-1">
+              <!-- History items will be populated here -->
+              <p class="text-sm text-gray-400 italic" id="emptyHistoryMsg">No saved semesters yet.</p>
+            </div>
+            <div class="border-t border-[#85bdf0] pt-3 flex justify-between items-end">
+              <div class="flex flex-col">
+                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Cumulative</span>
+                <span class="text-sm text-gray-700">Total Credits: <strong id="cumCredits">0.00</strong></span>
+              </div>
+              <div class="text-right">
+                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider block">CGPA</span>
+                <span class="text-2xl font-black text-indigo-600 leading-none" id="cumCgpa">0.00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Current Semester Courses -->
+          <div class="settings-card card-animate shadow-sm rounded-xl mb-4 p-4 bg-white border border-[#85bdf0]">
+            <div class="settings-header mb-4 flex justify-between items-center text-primary">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-book-open text-lg"></i>
+                <h3 class="font-bold text-lg m-0">Courses <span id="currentSemLabel" class="text-sm font-normal text-gray-500 ml-1"></span></h3>
+              </div>
+              <button id="toggleCoursesBtn" type="button" class="text-gray-400 hover:text-indigo-600 transition-colors p-2 rounded-lg bg-gray-50 hover:bg-indigo-50">
+                <i id="toggleCoursesIcon" class="fa-solid fa-chevron-down"></i>
+              </button>
+            </div>
+            
+            <div id="courseContentWrapper" class="hidden">
+              <div id="courseList" class="flex flex-col gap-3">
+                <!-- Courses will be populated here automatically -->
+              </div>
+
+              <div class="mt-5 border-t border-[#85bdf0] pt-4">
+                <div class="flex justify-between items-center mb-4 bg-indigo-50 p-3 rounded-lg border border-indigo-100">
+                  <span class="font-semibold text-gray-700">Term GPA</span>
+                  <span id="termGpaDisplay" class="text-2xl font-black text-indigo-600">0.00</span>
+                </div>
+                
+                <button id="saveTermBtn" type="button" class="w-full bg-primary hover:bg-gray-800 text-white font-semibold py-3 px-4 rounded-xl shadow-md transition-all flex justify-center items-center gap-2">
+                  <i class="fa-solid fa-floppy-disk"></i> Calculate & Save Semester
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Advisor Section -->
+          <div class="settings-card card-animate shadow-lg rounded-xl bg-gradient-to-br from-indigo-600 to-purple-700 text-white p-5 border-0">
+            <div class="flex flex-col gap-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-xl">
+                  <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg m-0 text-white">AI Academic Advisor</h3>
+                  <p class="text-indigo-100 text-sm m-0">Personalized insights based on your grades</p>
+                </div>
+              </div>
+              <button id="getAdviceBtn" type="button" class="w-full bg-white text-indigo-700 hover:bg-indigo-50 font-bold py-3 px-4 rounded-xl shadow transition-colors flex justify-center items-center gap-2">
+                <i class="fa-solid fa-brain"></i> Get AI Insights
+              </button>
+            </div>
+          </div>
+
+          <div id="aiAdvisorCard" class="settings-card card-animate mt-4 shadow-md rounded-xl bg-white border-l-4 border-[#85bdf0] p-5 hidden">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-2 text-indigo-700">
+                <i class="fa-solid fa-robot text-lg"></i>
+                <h3 class="font-bold text-lg m-0">Advisor Feedback</h3>
+              </div>
+            </div>
+            <div id="aiAdvisorText" class="text-[15px] leading-relaxed text-gray-700 prose prose-sm prose-indigo"></div>
+          </div>
+          
+          <!-- Advisor History Modal/Section -->
+          <div id="advisorHistorySection" class="settings-card card-animate mt-4 shadow-md rounded-xl bg-gray-50 border border-[#85bdf0] p-5 hidden">
+            <h3 class="font-bold text-gray-700 mb-3"><i class="fa-solid fa-clock-rotate-left"></i> Past Insights</h3>
+            <div id="advisorHistoryList" class="flex flex-col gap-3 max-h-[60vh] overflow-y-auto pr-1">
+              <!-- History items will go here -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- API Keys Management -->
+      <div class="settings-card card-animate shadow-sm rounded-xl mb-4 p-4 bg-white border border-[#85bdf0]">
+        <div class="settings-header mb-2 flex items-center gap-2 text-primary">
+          <i class="fa-solid fa-key text-lg"></i>
+          <h3 class="font-bold text-lg m-0">Gemini API Keys</h3>
+        </div>
+        <p class="text-sm text-gray-500 mb-4">Add multiple API keys to avoid rate limits. The AI Advisor will automatically rotate them.</p>
+
+        <div class="flex flex-col sm:flex-row gap-2 mb-4">
+          <input type="password" id="newApiKeyInput" class="setting-select flex-1 p-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Enter Gemini API Key">
+          <button id="addApiKeyBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">Add</button>
+        </div>
+
+        <div id="apiKeyList" class="flex flex-col gap-2 max-h-48 overflow-y-auto">
+          <!-- Keys will be rendered here -->
+          <p class="text-sm text-gray-400 italic" id="emptyApiKeyMsg">No API keys added yet.</p>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- Floating Rounded Bottom Navigation Bar -->
+  <nav class="bottom-nav">
+    <button type="button" class="nav-item active" data-tab="home">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </button>
+
+    <button type="button" class="nav-item" data-tab="notice">
+      <i class="fa-solid fa-bell"></i>
+      <span>Notice</span>
+      <span class="nav-badge" id="navNoticeBadge" style="display:none;">0</span>
+    </button>
+
+    <button type="button" class="nav-item" data-tab="result">
+      <i class="fa-solid fa-chart-column"></i>
+      <span>Result</span>
+      <span class="nav-badge" id="navResultBadge" style="display:none;">0</span>
+    </button>
+
+    <button type="button" class="nav-item" data-tab="resources">
+      <i class="fa-solid fa-book-bookmark"></i>
+      <span>Resources</span>
+    </button>
+
+    <button type="button" class="nav-item" data-tab="settings">
+      <i class="fa-solid fa-gear"></i>
+      <span>Settings</span>
+    </button>
+  </nav>
+
+  <!-- PDF Preview Modal -->
+  <div id="pdfModal" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <span id="modalNoticeTitle" class="modal-title">Notice Document</span>
+        <button type="button" class="modal-close" id="closeModalBtn" aria-label="Close preview">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body" style="position: relative;">
+        <div id="pdfLoadingState" class="state-box" style="display:none; position:absolute; inset:16px; z-index:2; border:none;">
+          <i class="fa-solid fa-circle-notch spinner"></i>
+          <span>Loading document preview...</span>
+        </div>
+        <iframe id="pdfFrame" src="about:blank" title="PDF Notice Viewer"></iframe>
+        <div id="modalTextContent" class="modal-text-content" style="display:none; padding: 20px; font-size: 17px; line-height: 1.7; color: var(--text-main); white-space: pre-wrap;"></div>
+      </div>
+      <div class="modal-footer" id="modalFooter">
+        <button type="button" id="modalDownloadBtn" class="btn-share" aria-label="Download PDF" title="Download PDF" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:10px 16px;">
+          <i class="fa-solid fa-download"></i>
+        </button>
+        <a id="modalDirectLink" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          <span>Open Direct PDF</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detailed Resource Preview & Info Modal -->
+  <div id="resourceDetailModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="resModalTitle">
+    <div class="modal-card res-modal-card">
+      <div class="modal-header res-modal-header">
+        <div class="res-modal-header-left">
+          <span id="resModalCourseBadge" class="res-modal-course-pill">CSE 101</span>
+          <span id="resModalTitle" class="modal-title res-modal-title-text">Resource Title</span>
+        </div>
+        <button type="button" class="modal-close" id="closeResModalBtn" aria-label="Close resource preview">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Modal Mode Switcher (Overview vs Read) -->
+      <div class="res-modal-tabs">
+        <button type="button" class="res-modal-tab active" data-res-tab="details" id="resModalTabDetails">
+          <i class="fa-solid fa-circle-info"></i> Overview
+        </button>
+        <button type="button" class="res-modal-tab" data-res-tab="viewer" id="resModalTabViewer">
+          <i class="fa-solid fa-book-open-reader"></i> Read
+        </button>
+      </div>
+
+      <div class="modal-body res-modal-body">
+        <!-- Tab 1: Overview, Provided Thumbnail Preview & Metadata -->
+        <div id="resModalOverviewPane" class="res-modal-pane active">
+          <div class="res-modal-thumb-box" id="resModalThumbBox">
+            <!-- Populated dynamically with provided thumbnail or clean academic cover -->
+          </div>
+
+          <div class="res-modal-info-content">
+            <div class="res-modal-badges-row" id="resModalBadgesRow"></div>
+            <h3 class="res-modal-full-title" id="resModalFullTitle"></h3>
+            <p class="res-modal-course-name" id="resModalCourseName"></p>
+            <p class="res-modal-desc" id="resModalDesc"></p>
+
+            <div class="res-modal-meta-grid" id="resModalMetaGrid"></div>
+
+            <div class="res-modal-tags-wrap" id="resModalTagsWrap"></div>
+
+            <!-- Exact Provided Document Link Box -->
+            <div class="res-modal-link-box" id="resModalLinkBox">
+              <div class="res-modal-link-header">
+                <span><i class="fa-brands fa-google-drive"></i> Provided Document Link</span>
+                <div class="res-modal-link-actions">
+                  <button type="button" id="resModalCopyLinkBtn" class="res-mini-btn" title="Copy exact link">
+                    <i class="fa-regular fa-copy"></i> Copy
+                  </button>
+                  <button type="button" id="resModalShareLinkBtn" class="res-mini-btn" title="Share resource">
+                    <i class="fa-solid fa-share-nodes"></i> Share
+                  </button>
+                </div>
+              </div>
+              <div class="res-modal-link-url" id="resModalExactUrl">No document URL provided yet</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Live Document / Google Drive Embed Reader -->
+        <div id="resModalViewerPane" class="res-modal-pane">
+          <div id="resViewerLoading" class="state-box res-viewer-loading" style="display:none;">
+            <i class="fa-solid fa-circle-notch spinner"></i>
+            <span>Loading Google Drive / Document preview...</span>
+          </div>
+          <iframe id="resViewerFrame" src="about:blank" title="Resource Document Preview" allow="autoplay"></iframe>
+          <div id="resViewerFallback" class="state-box res-viewer-fallback" style="display:none;"></div>
+        </div>
+      </div>
+
+      <div class="modal-footer res-modal-footer">
+        <button type="button" id="resModalDownloadBtn" class="btn-share res-btn-download">
+          <i class="fa-solid fa-download"></i>
+          <span>Download</span>
+        </button>
+        <a id="resModalOpenBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary res-btn-open">
+          <span>Open Document</span>
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full-Screen Resource Contributors Leaderboard Popup (Auto-Opens on Entering Resources, Close Button Appears After 3s) -->
+  <div id="resLeaderboardModal" class="res-lb-overlay" role="dialog" aria-modal="true" aria-labelledby="resLeaderboardTitle">
+    <div class="res-lb-fullscreen">
+      <!-- Top Header with 3s Delayed Close Button -->
+      <div class="res-lb-header">
+        <div class="res-lb-brand">
+          <div class="res-lb-trophy-icon">
+            <i class="fa-solid fa-trophy"></i>
+          </div>
+          <div class="res-lb-title-group">
+            <h2 id="resLeaderboardTitle">Leaderboard</h2>
+            <p id="resLeaderboardSub">Top Contributors</p>
+          </div>
+        </div>
+
+        <div class="res-lb-close-area">
+          <span id="resLbTimerBadge" class="res-lb-timer-badge" aria-live="polite">
+            <i class="fa-regular fa-clock"></i>
+            <span id="resLbTimerText">3s</span>
+          </span>
+          <button type="button" id="closeResLeaderboardBtn" class="res-lb-close-btn hidden" aria-label="Close Leaderboard">
+            <i class="fa-solid fa-xmark"></i>
+            <span>Close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Scrollable Leaderboard Content -->
+      <div class="res-lb-body">
+        <!-- Top 3 Podium: 2nd (Left) — 1st (Center, Largest) — 3rd (Right) -->
+        <div id="resLeaderboardPodium" class="res-lb-podium" aria-label="Top 3 Resource Contributors"></div>
+
+        <!-- Remaining Contributors Ranked List (4th, 5th, 6th, ...) -->
+        <div class="res-lb-list-section">
+          <div class="res-lb-list-header">
+            <span>Contributors</span>
+            <span id="resLbTotalCount">0 Total</span>
+          </div>
+          <div id="resLeaderboardList" class="res-lb-list" role="list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PWA Install Popup / Banner -->
+  <div id="pwaInstallBanner" class="pwa-install-banner">
+    <div class="pwa-content">
+      <img src="https://i.ibb.co.com/7JnHCrB5/Chat-GPT-Image-Jul-29-2026-09-55-12-PM.png" alt="SASTC Portal" class="pwa-app-icon" loading="lazy" decoding="async" />
+      <div class="pwa-text">
+        <h4>Install SASTC Portal [1 MB] </h4>
+        <p>হোম স্ক্রিনে অ্যাপ হিসেবে ইনস্টল করে দ্রুত নোটিশ পান</p>
+      </div>
+    </div>
+    <div class="pwa-actions">
+      
+      <button type="button" id="btnInstallApp" class="btn-pwa-install">
+        <i class="fa-solid fa-download"></i> Install
+      </button>
+    </div>
+  </div>
+  <!-- First-Visit Mandatory Department Selection Popup -->
+  <div id="deptOnboardingModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="deptModalTitle">
+    <div class="dept-modal-card">
+      <div class="dept-modal-header">
+        <div class="dept-modal-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <h2 id="deptModalTitle">Select Your Department</h2>
+        <p>নোটিশ, রেজাল্ট এবং সিলেবাস আপনার ডিপার্টমেন্ট অনুযায়ী দেখতে নিচের যেকোনো একটি নির্বাচন করুন</p>
+      </div>
+
+      <div class="dept-options-list" id="deptOnboardingOptions">
+        <button type="button" class="dept-option-btn" data-dept="CSE">
+          <div class="dept-opt-icon cse"><i class="fa-solid fa-code"></i></div>
+          <div class="dept-opt-info">
+            <strong>Computer Science (CSE)</strong>
+            <span>B.Sc. (Engg.) in CSE</span>
+          </div>
+          <i class="fa-regular fa-circle dept-opt-check"></i>
+        </button>
+
+        <button type="button" class="dept-option-btn" data-dept="AG">
+          <div class="dept-opt-icon ag"><i class="fa-solid fa-wheat-awn"></i></div>
+          <div class="dept-opt-info">
+            <strong>B.Sc. in Agriculture</strong>
+            <span>Faculty of Agriculture (AG)</span>
+          </div>
+          <i class="fa-regular fa-circle dept-opt-check"></i>
+        </button>
+
+        <button type="button" class="dept-option-btn" data-dept="BBA">
+          <div class="dept-opt-icon bba"><i class="fa-solid fa-chart-line"></i></div>
+          <div class="dept-opt-info">
+            <strong>Business Administration (BBA)</strong>
+            <span>Faculty of Business Studies</span>
+          </div>
+          <i class="fa-regular fa-circle dept-opt-check"></i>
+        </button>
+      </div>
+
+      <button type="button" id="confirmDeptBtn" class="btn-confirm-dept" disabled>
+        <span>Continue</span> <i class="fa-solid fa-arrow-right"></i>
+      </button>
+
+      <div class="popup-dev-credit">
+        Developed by <strong>Mehedi Al Hasan Sawon</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">
+    <div style="display:flex; align-items:center; justify-content:center; gap:8px;">
+      <i id="toastIcon" class="fa-solid fa-circle-check"></i>
+      <span id="toastMsg" style="white-space:nowrap; text-align:center;">Link copied to clipboard</span>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

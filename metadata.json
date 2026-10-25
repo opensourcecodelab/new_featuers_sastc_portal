@@ -1,0 +1,8 @@
+{
+  "name": "RESOURCES sastc_portal_live-test",
+  "description": "Imported from GitHub: opensourcecodelab/sastc_portal_live-test",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

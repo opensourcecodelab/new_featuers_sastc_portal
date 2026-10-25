@@ -2011,11 +2011,20 @@ function createResourceCardHTML(item) {
           </div>
           <div class="res-card-actions">
             ${extraMetaBits.length ? `<div class="res-card-extra-meta">${extraMetaBits.join("")}</div>` : ""}
-            ${hasDocUrl ? `
-              <a href="${escapeHTML(item.url)}" target="_blank" rel="noopener noreferrer" class="res-card-direct-btn" title="Open Link Directly" onclick="event.stopPropagation();">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
-            ` : ""}
+            <button type="button" class="res-card-share-btn" data-share-id="${escapeHTML(item.id)}" title="Share Resource">
+              <i class="fa-solid fa-share-nodes"></i>
+              <span>Share</span>
+            </button>
+            <a
+              href="${hasDocUrl ? escapeHTML(item.url) : "#"}"
+              ${hasDocUrl ? 'target="_blank" rel="noopener noreferrer"' : ""}
+              class="res-card-direct-btn ${hasDocUrl ? "" : "disabled"}"
+              data-visit-id="${escapeHTML(item.id)}"
+              title="Visit Document Link"
+            >
+              <span>Visit</span>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
             <span class="res-card-preview-btn">
               <span>Preview</span>
               <i class="fa-solid fa-expand"></i>
@@ -2111,10 +2120,42 @@ function renderResourcesView(options = {}) {
   track.innerHTML = filteredResourcesList.map(item => createResourceCardHTML(item)).join("");
 
   track.querySelectorAll(".res-card").forEach(cardEl => {
+    const id = cardEl.getAttribute("data-resource-id");
+    const getResourceItem = () =>
+      filteredResourcesList.find(r => r.id === id) || currentDeptResources.find(r => r.id === id);
+
+    const shareBtn = cardEl.querySelector(".res-card-share-btn");
+    if (shareBtn) {
+      shareBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        triggerHaptic();
+        const resourceItem = getResourceItem();
+        if (!resourceItem) return;
+        const shareTargetUrl =
+          resourceItem.url && resourceItem.url !== "#" ? resourceItem.url : window.location.href;
+        shareLink(shareTargetUrl, `${resourceItem.courseCode} - ${resourceItem.title}`);
+      });
+    }
+
+    const visitBtn = cardEl.querySelector(".res-card-direct-btn");
+    if (visitBtn) {
+      visitBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        triggerHaptic();
+        const resourceItem = getResourceItem();
+        if (!resourceItem || !resourceItem.url || resourceItem.url === "#") {
+          e.preventDefault();
+          showToast(
+            `Add document URL in ${(resourceItem ? resourceItem.dept : activeResourceDept).toLowerCase()}-resource.js first`,
+            "fa-circle-exclamation"
+          );
+        }
+      });
+    }
+
     const openCardModal = () => {
       triggerHaptic();
-      const id = cardEl.getAttribute("data-resource-id");
-      const resourceItem = filteredResourcesList.find(r => r.id === id) || currentDeptResources.find(r => r.id === id);
+      const resourceItem = getResourceItem();
       if (resourceItem) openResourceDetailModal(resourceItem);
     };
 

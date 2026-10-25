@@ -1938,8 +1938,7 @@ function createResourceCardHTML(item) {
   const thumbUrl = resolveThumbnailUrl(item.thumbnail);
   const catInfo = getCategoryAccentInfo(item.category);
   const hasDocUrl = Boolean(item.url && item.url !== "#");
-  const isDrive = hasDocUrl && (item.url.includes("drive.google.com") || item.url.includes("docs.google.com"));
-  const fileBadgeLabel = item.fileType || (isDrive ? "DRIVE PDF" : "PDF");
+  const fileBadgeLabel = item.fileType || "PDF";
 
   const thumbnailContent = thumbUrl
     ? `
@@ -1965,71 +1964,55 @@ function createResourceCardHTML(item) {
       </div>
     `;
 
-  const tagsPreview = item.tags.slice(0, 3).map(tag =>
-    `<span class="res-card-tag">#${escapeHTML(tag)}</span>`
-  ).join("");
-
   const sharedByName = item.sharedBy || item.author || `Dept. of ${item.dept}`;
-  const extraMetaBits = [];
-  if (item.pages) extraMetaBits.push(`<span class="res-card-extra-bit"><i class="fa-regular fa-file-lines"></i> ${escapeHTML(item.pages)}p</span>`);
-  if (item.size) extraMetaBits.push(`<span class="res-card-extra-bit"><i class="fa-solid fa-hard-drive"></i> ${escapeHTML(item.size)}</span>`);
 
   return `
     <article class="res-card" data-resource-id="${escapeHTML(item.id)}" tabindex="0" role="button" aria-label="${escapeHTML(item.title)}">
       <div class="res-card-thumb-wrap">
+        <span class="res-pill res-pill-type res-thumb-pdf-badge">${escapeHTML(fileBadgeLabel)}</span>
         ${thumbnailContent}
-        <span class="res-file-badge">
-          <i class="${isDrive ? "fa-brands fa-google-drive" : "fa-solid fa-file-pdf"}"></i>
-          ${escapeHTML(fileBadgeLabel)}
-        </span>
-        <span class="res-sem-badge">L${escapeHTML(item.level)} • S${escapeHTML(item.semester)}</span>
+        <span class="res-pill res-pill-ls res-thumb-ls-badge">L${escapeHTML(item.level)}&bull;S${escapeHTML(item.semester)}</span>
       </div>
 
       <div class="res-card-body">
-        <div class="res-card-top-row">
-          <span class="res-course-code-badge">${escapeHTML(item.courseCode)}</span>
-          <span class="res-category-pill ${catInfo.cls}">
-            <i class="${catInfo.icon}"></i> ${escapeHTML(item.category)}
-          </span>
-        </div>
-
         <h4 class="res-card-title" title="${escapeHTML(item.title)}">${escapeHTML(item.title)}</h4>
 
         <p class="res-card-details">
           ${escapeHTML(item.details || item.courseTitle || "Tap to view full resource details, preview, and download options.")}
         </p>
 
-        <div class="res-card-tags">${tagsPreview}</div>
+        <div class="res-card-pills-row">
+          <span class="res-pill res-pill-code">${escapeHTML(item.courseCode)}</span>
+          <span class="res-pill res-pill-cat ${catInfo.cls}">${escapeHTML(item.category)}</span>
+        </div>
 
-        <div class="res-card-footer">
-          <div class="res-card-meta-info">
-            <span class="res-shared-by-badge">
-              <i class="fa-solid fa-user-pen"></i>
-              <em class="res-shared-prefix">Shared by -</em>
-              <strong class="res-shared-fullname">${escapeHTML(sharedByName)}</strong>
-            </span>
-          </div>
-          <div class="res-card-actions">
-            ${extraMetaBits.length ? `<div class="res-card-extra-meta">${extraMetaBits.join("")}</div>` : ""}
-            <button type="button" class="res-card-share-btn" data-share-id="${escapeHTML(item.id)}" title="Share Resource">
-              <i class="fa-solid fa-share-nodes"></i>
-              <span>Share</span>
-            </button>
-            <a
-              href="${hasDocUrl ? escapeHTML(item.url) : "#"}"
-              ${hasDocUrl ? 'target="_blank" rel="noopener noreferrer"' : ""}
-              class="res-card-direct-btn ${hasDocUrl ? "" : "disabled"}"
-              data-visit-id="${escapeHTML(item.id)}"
-              title="Visit Document Link"
-            >
-              <span>Visit</span>
-              <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
-            <span class="res-card-preview-btn">
-              <span>Preview</span>
-              <i class="fa-solid fa-expand"></i>
-            </span>
-          </div>
+        <div class="res-card-meta-info">
+          <span class="res-shared-by-badge">
+            <i class="fa-solid fa-user-pen"></i>
+            <em class="res-shared-prefix">Shared by -</em>
+            <strong class="res-shared-fullname">${escapeHTML(sharedByName)}</strong>
+          </span>
+        </div>
+
+        <div class="res-card-actions">
+          <button type="button" class="res-card-share-btn" data-share-id="${escapeHTML(item.id)}" title="Share Resource">
+            <i class="fa-solid fa-share-nodes"></i>
+            <span>Share</span>
+          </button>
+          <a
+            href="${hasDocUrl ? escapeHTML(item.url) : "#"}"
+            ${hasDocUrl ? 'target="_blank" rel="noopener noreferrer"' : ""}
+            class="res-card-direct-btn ${hasDocUrl ? "" : "disabled"}"
+            data-visit-id="${escapeHTML(item.id)}"
+            title="Visit Document Link"
+          >
+            <span>Visit</span>
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+          <span class="res-card-preview-btn">
+            <span>Preview</span>
+            <i class="fa-solid fa-expand"></i>
+          </span>
         </div>
       </div>
     </article>
